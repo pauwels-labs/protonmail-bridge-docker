@@ -79,5 +79,3 @@ docker build .
 ```
 
 That's it. The `Dockerfile` and bash scripts handle all the downloading, building, and packing. You can also add tags, push to your favorite docker registry, or use `buildx` to build multi architecture images.
-
-pipeline
