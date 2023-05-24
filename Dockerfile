@@ -27,4 +27,11 @@ COPY gpgparams entrypoint.sh /protonmail/
 COPY --from=build /build/proton-bridge/bridge /protonmail/
 COPY --from=build /build/proton-bridge/proton-bridge /protonmail/
 
-ENTRYPOINT ["bash", "/protonmail/entrypoint.sh"]
+RUN addgroup --gid 1000 service
+RUN adduser --disabled-password --uid 1000 --gid 1000 service
+RUN chgrp -R service /protonmail && chown -R service /protonmail
+USER service:service
+
+WORKDIR /protonmail
+
+ENTRYPOINT ["bash", "./entrypoint.sh"]
